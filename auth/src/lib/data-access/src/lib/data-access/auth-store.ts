@@ -10,9 +10,9 @@ const authStore = createStore(
     name: 'authStoreName',
   },
   withProps<{
-    User: { id: string; firstName: UserData['firstName'] };
+    User: { firstName: UserData['firstName']; token: string };
   }>({
-    User: { id: '', firstName: '' },
+    User: { firstName: '', token: '' },
   }),
 
   withRequestsCache(),
@@ -24,12 +24,15 @@ persistState(authStore, {
   storage: localStorageStrategy,
 });
 
-export function setUser(id: string, firstName: UserData['firstName']) {
+export function setUser(
+  firstName: UserData['firstName'],
+  token: string
+) {
   authStore.update(
     setProps({
       User: {
-        id: id,
-        firstName: firstName,
+        firstName,
+        token,
       },
     })
   );

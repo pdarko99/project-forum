@@ -45,10 +45,8 @@ export class FeatureComponent {
       .subscribe((res) => {
         form.reset();
         this.notificationService.open(res.message);
-        const now = new Date();
-        const expirationDate = new Date(now.getTime() + res.expiresIn * 1000);
 
-        this.authService.saveAuthData(res.token, expirationDate, res.userId, res.firstName);
+        this.authService.saveAuthData(res.token, res.firstName);
         this.authService.setAuthTimer(res.expiresIn);
         this.closeDialog.emit();
         

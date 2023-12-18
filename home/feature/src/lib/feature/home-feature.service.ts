@@ -11,8 +11,8 @@ export class HomeFeatureService {
   url = 'http://localhost:3000/api/forum/';
   http = inject(HttpClient);
 
-  public readonly getAllForums = (id: string): Observable<forum[]> => {
-    return this.http.get<forum[]>(this.url + id).pipe(
+  public readonly getAllForums = (): Observable<forum[]> => {
+    return this.http.get<forum[]>(this.url).pipe(
       tap((x) => {
         setForum(x);
       })

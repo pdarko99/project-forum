@@ -18,7 +18,7 @@
       "@project-forum/auth": ["auth/src/index.ts"],
       "@project-forum/auth-dialog": ["auth/src/lib/authDialog/src/index.ts"],
       "@project-forum/data-access": ["auth/src/lib/data-access/src/index.ts"],
-      "@project-forum/error-Interceptor": ["shared/interceptor/src/index.ts"],
+      "@project-forum/Interceptor": ["shared/interceptor/src/index.ts"],
       "@project-forum/home/feature": ["home/feature/src/index.ts"],
       "@project-forum/home/ui": ["home/ui/src/index.ts"],
       "@project-forum/loading": ["shared/loading/src/index.ts"],

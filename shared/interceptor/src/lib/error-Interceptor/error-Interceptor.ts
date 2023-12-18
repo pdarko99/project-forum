@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
+  HttpErrorResponse,
+  HttpHandler,
   HttpInterceptor,
   HttpRequest,
-  HttpHandler,
-  HttpErrorResponse,
 } from '@angular/common/http';
-import { NotificationService } from '@project-forum/notification';
-import { LoadingService } from '@project-forum/loading';
-import { catchError, finalize, throwError } from 'rxjs';
 import { Injectable, inject } from '@angular/core';
+import { LoadingService } from '@project-forum/loading';
+import { NotificationService } from '@project-forum/notification';
+import { catchError, finalize, throwError } from 'rxjs';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

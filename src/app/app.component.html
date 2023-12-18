@@ -1,5 +1,3 @@
-
-
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
     #drawer
@@ -9,7 +7,7 @@
     [mode]="isHandset() ? 'over' : 'side'"
     opened="false"
   >
-    <mat-toolbar class="sidenavToolbar" >
+    <mat-toolbar class="sidenavToolbar">
       <div>Menu</div>
       @if(drawer.opened){
       <div class="icon-container">
@@ -38,7 +36,9 @@
       </button>
       <span>Dashboard</span>
       <span class="spacer"></span>
-      <span class="mat-small">Welcome {{userData().firstName}}</span>
+      @if(userData().firstName){
+      <span class="mat-small">Welcome {{ userData().firstName }}</span>
+      }
       <span>
         <button
           mat-icon-button
@@ -50,11 +50,9 @@
             isDark() === true ? 'dark_mode' : 'light_mode'
           }}</mat-icon>
         </button>
-      
       </span>
     </mat-toolbar>
 
-  
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
