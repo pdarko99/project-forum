@@ -1,0 +1,27 @@
+{
+  "name": "SignIn-feature",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "auth/src/lib/signIn/feature/src",
+  "prefix": "project-forum",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "auth/src/lib/signIn/feature/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "auth/src/lib/signIn/feature/**/*.ts",
+          "auth/src/lib/signIn/feature/**/*.html"
+        ]
+      }
+    }
+  }
+}

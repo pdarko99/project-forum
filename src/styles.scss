@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+@use './styles/themes/all' as themes;
+@use './styles/typography/config';
+
+@include mat.core();
+
+@include mat.icon-theme(themes.$my-app-light-theme);
+@include mat.menu-theme(themes.$my-app-light-theme);
+@include mat.button-theme(themes.$my-app-light-theme);
+@include mat.toolbar-theme(themes.$my-app-light-theme);
+
+@include mat.sidenav-theme(themes.$my-app-light-theme);
+
+@include mat.list-theme(themes.$my-app-light-theme);
+@include mat.dialog-theme(themes.$my-app-light-theme);
+@include mat.tabs-theme(themes.$my-app-light-theme);
+@include mat.form-field-theme(themes.$my-app-light-theme);
+@include mat.snack-bar-theme(themes.$my-app-light-theme);
+
+@include mat.core-theme(themes.$my-app-light-theme);
+
+@include mat.typography-hierarchy(config.$my-app-typography);
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}

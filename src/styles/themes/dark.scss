@@ -1,0 +1,18 @@
+@use '@angular/material' as mat;
+@use './all' as themes;
+
+.dark-theme {
+  @include mat.core-color(themes.$my-app-dark-theme);
+  @include mat.button-color(themes.$my-app-dark-theme);
+  @include mat.icon-color(themes.$my-app-dark-theme);
+  @include mat.menu-color(themes.$my-app-dark-theme);
+  @include mat.toolbar-color(themes.$my-app-dark-theme);
+  @include mat.snack-bar-color(themes.$my-app-dark-theme);
+  @include mat.dialog-color(themes.$my-app-dark-theme);
+  @include mat.tabs-color(themes.$my-app-dark-theme);
+  @include mat.sidenav-color(themes.$my-app-dark-theme);
+  @include mat.list-color(themes.$my-app-dark-theme);
+  @include mat.form-field-color(themes.$my-app-dark-theme);
+
+  
+}

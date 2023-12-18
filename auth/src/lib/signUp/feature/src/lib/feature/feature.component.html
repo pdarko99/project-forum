@@ -1,0 +1,75 @@
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="signUpForm" (submit)="signUp()">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>FirstName</mat-label>
+        <input matInput placeholder="Peter" formControlName="firstName" />
+        @if(signUpForm.get('firstName')?.errors?.["required"] &&
+        signUpForm.get('firstName')?.touched){
+        <mat-error>FirstName is required</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>LastName</mat-label>
+        <input matInput placeholder="Doe" formControlName="lastName" />
+        @if(signUpForm.get('lastName')?.errors?.["required"] &&
+        signUpForm.get('lastName')?.touched){
+        <mat-error>LastName is required</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="ex@example.com" formControlName="email" />
+        @if(signUpForm.get('email')?.errors?.["required"] &&
+        signUpForm.get('email')?.touched){
+        <mat-error>Email is required</mat-error>
+        }@else if(signUpForm.get('email')?.errors?.["email"] &&
+        signUpForm.get('email')?.touched){
+        <mat-error>please enter a valid email</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <section formGroupName="passwordGroup">
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password" />
+          @if(signUpForm.get('passwordGroup.password')?.errors?.["required"] &&
+          signUpForm.get('passwordGroup.password')?.touched){
+          <mat-error>Password is required</mat-error>
+          } @else if(signUpForm.get('passwordGroup.password')?.errors?.["minlength"] &&
+          signUpForm.get('passwordGroup.password')?.touched){
+          <mat-error>must be more than six characters</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm password</mat-label>
+          <input type="password" matInput formControlName="confirmPassword" />
+        </mat-form-field>
+        @if(signUpForm.get('passwordGroup')?.errors?.["match"] &&
+        signUpForm.get('passwordGroup.confirmPassword')?.touched){
+        <small style="color: red"> Passwords do not match </small>
+        }
+      </div>
+    </section>
+    <button style="display: none" #signinbtn type="submit">Submit</button>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [disabled]="showLoading()" mat-dialog-close>Demo</button>
+  <button
+    mat-button
+    cdkFocusInitial
+    (click)="signinbtn.click()"
+    [disabled]="signUpForm.invalid || showLoading()"
+  >
+    Submit
+  </button>
+</mat-dialog-actions>

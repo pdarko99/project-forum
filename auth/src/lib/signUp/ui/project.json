@@ -1,0 +1,27 @@
+{
+  "name": "sign-up-ui",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "auth/src/lib/signUp/ui/src",
+  "prefix": "project-forum",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "auth/src/lib/signUp/ui/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "auth/src/lib/signUp/ui/**/*.ts",
+          "auth/src/lib/signUp/ui/**/*.html"
+        ]
+      }
+    }
+  }
+}

@@ -1,2 +1,66 @@
-<project-forum-nx-welcome></project-forum-nx-welcome>
-<router-outlet></router-outlet>
+
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="isHandset() ? 'dialog' : 'navigation'"
+    [mode]="isHandset() ? 'over' : 'side'"
+    opened="false"
+  >
+    <mat-toolbar class="sidenavToolbar" >
+      <div>Menu</div>
+      @if(drawer.opened){
+      <div class="icon-container">
+        <mat-icon (click)="drawer.close()">close</mat-icon>
+      </div>
+      }
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <a mat-list-item href="#">Link 1</a>
+      <a mat-list-item href="#">Link 2</a>
+      <a mat-list-item href="#">Link 3</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar [color]="!isDark() ? 'primary' : ''">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon aria-label="Side nav toggle icon">{{
+          drawer.opened ? '' : 'menu'
+        }}</mat-icon>
+      </button>
+      <span>Dashboard</span>
+      <span class="spacer"></span>
+      <span class="mat-small">Welcome {{userData().firstName}}</span>
+      <span>
+        <button
+          mat-icon-button
+          class="theme-toggle"
+          aria-label="Change theme"
+          [matMenuTriggerFor]="themeMenu"
+        >
+          <mat-icon>{{
+            isDark() === true ? 'dark_mode' : 'light_mode'
+          }}</mat-icon>
+        </button>
+      
+      </span>
+    </mat-toolbar>
+
+  
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<mat-menu #themeMenu="matMenu">
+  <button mat-menu-item (click)="changeTheme('auto')">System</button>
+  <button mat-menu-item (click)="changeTheme('light')">Light</button>
+  <button mat-menu-item (click)="changeTheme('dark')">Dark</button>
+</mat-menu>

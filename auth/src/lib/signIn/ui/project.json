@@ -1,0 +1,27 @@
+{
+  "name": "SignIn-ui",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "auth/src/lib/signIn/ui/src",
+  "prefix": "project-forum",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "auth/src/lib/signIn/ui/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "auth/src/lib/signIn/ui/**/*.ts",
+          "auth/src/lib/signIn/ui/**/*.html"
+        ]
+      }
+    }
+  }
+}
