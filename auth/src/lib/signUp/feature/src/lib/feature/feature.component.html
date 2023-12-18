@@ -63,7 +63,7 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button [disabled]="showLoading()" mat-dialog-close>Demo</button>
+  <button mat-button [disabled]="showLoading()" (click)="demo()" mat-dialog-close>Demo</button>
   <button
     mat-button
     cdkFocusInitial

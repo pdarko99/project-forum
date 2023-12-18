@@ -18,6 +18,7 @@ import { authDataDialog } from '@project-forum/auth-dialog';
 import { AuthService } from '@project-forum/data-access';
 import { map, shareReplay } from 'rxjs';
 import { ThemeManagerService } from './theme-manager/theme-manager.service';
+import {HomeFeatureService} from '@project-forum/home/feature';
 
 @Component({
   standalone: true,
@@ -37,11 +38,17 @@ import { ThemeManagerService } from './theme-manager/theme-manager.service';
 })
 export class AppComponent implements OnInit {
   protected readonly injector = inject(Injector);
+
+  protected readonly homeService = inject(HomeFeatureService);
+
+
   authService = inject(AuthService);
 
   userData = toSignal(this.authService.selectUserData$, {
     initialValue: { firstName: '', token: '' },
   });
+
+  forumList = toSignal(this.homeService.selectForums$);
 
   title = 'project-forum';
   themeManager = inject(ThemeManagerService);
@@ -61,6 +68,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.userData().token) {
+      return this.authService.checkTokenStatus();
+    }
     this.openDialog();
   }
   openDialog() {

@@ -1,23 +1,27 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+  inject,
+} from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { AuthService } from '@project-forum/data-access';
+import { LoadingService } from '@project-forum/loading';
+import { NotificationService } from '@project-forum/notification';
 import { passwordMatcher } from '@project-forum/util';
 import { SignUpFeatureService } from './sign-up-feature.service';
-import { Output, EventEmitter } from '@angular/core';
-import { NotificationService } from '@project-forum/notification';
-import { LoadingService } from '@project-forum/loading';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { AuthService } from '@project-forum/data-access';
-
 
 @Component({
   selector: 'project-forum-sign-up-feature',
@@ -81,9 +85,13 @@ export class FeatureComponent {
       this.signUpForm.reset();
       this.notificationService.open(res.message);
 
-      this.authService.saveAuthData(res.token, res.firstName);
-      this.authService.setAuthTimer(res.expiresIn);
+      this.authService.saveAuthData(res.token, res.firstName, res.expiresIn);
+      this.authService.setAuthTimer(res.expiresIn * 1000);
       this.closeDialog.emit();
     });
+  }
+
+  demo(){
+    
   }
 }

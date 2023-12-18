@@ -46,10 +46,22 @@ export class FeatureComponent {
         form.reset();
         this.notificationService.open(res.message);
 
-        this.authService.saveAuthData(res.token, res.firstName);
-        this.authService.setAuthTimer(res.expiresIn);
+        this.authService.saveAuthData(res.token, res.firstName, res.expiresIn);
+        this.authService.setAuthTimer(res.expiresIn  * 1000);
         this.closeDialog.emit();
         
       });
+  }
+
+  demo(){
+    this.signInService
+    .signIn("k@gmail.com", '123456')
+    .subscribe((res) => {
+      this.notificationService.open(res.message);
+      this.authService.saveAuthData(res.token, res.firstName, res.expiresIn);
+      this.authService.setAuthTimer(res.expiresIn  * 1000);
+      this.closeDialog.emit();
+      
+    });
   }
 }
