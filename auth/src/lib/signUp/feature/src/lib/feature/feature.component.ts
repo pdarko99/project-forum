@@ -61,9 +61,17 @@ export class FeatureComponent {
 
     passwordGroup: this.fb.group(
       {
-        password: ['', [Validators.required, Validators.minLength(6)]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(
+              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+            ),
+          ],
+        ],
 
-        confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', [Validators.required]],
       },
       { validators: passwordMatcher }
     ),
@@ -91,7 +99,5 @@ export class FeatureComponent {
     });
   }
 
-  demo(){
-    
-  }
+  demo() {}
 }

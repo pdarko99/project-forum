@@ -6,7 +6,7 @@
         <input matInput placeholder="Peter" formControlName="firstName" />
         @if(signUpForm.get('firstName')?.errors?.["required"] &&
         signUpForm.get('firstName')?.touched){
-        <mat-error>FirstName is required</mat-error>
+        <mat-error><small>FirstName is required</small></mat-error>
         }
       </mat-form-field>
     </div>
@@ -16,7 +16,7 @@
         <input matInput placeholder="Doe" formControlName="lastName" />
         @if(signUpForm.get('lastName')?.errors?.["required"] &&
         signUpForm.get('lastName')?.touched){
-        <mat-error>LastName is required</mat-error>
+        <mat-error><small>LastName is required</small></mat-error>
         }
       </mat-form-field>
     </div>
@@ -26,10 +26,10 @@
         <input matInput placeholder="ex@example.com" formControlName="email" />
         @if(signUpForm.get('email')?.errors?.["required"] &&
         signUpForm.get('email')?.touched){
-        <mat-error>Email is required</mat-error>
+        <mat-error><small>Email is required</small></mat-error>
         }@else if(signUpForm.get('email')?.errors?.["email"] &&
         signUpForm.get('email')?.touched){
-        <mat-error>please enter a valid email</mat-error>
+        <mat-error><small>please enter a valid email</small></mat-error>
         }
       </mat-form-field>
     </div>
@@ -39,14 +39,26 @@
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
           <input type="password" matInput formControlName="password" />
-          @if(signUpForm.get('passwordGroup.password')?.errors?.["required"] &&
-          signUpForm.get('passwordGroup.password')?.touched){
-          <mat-error>Password is required</mat-error>
-          } @else if(signUpForm.get('passwordGroup.password')?.errors?.["minlength"] &&
-          signUpForm.get('passwordGroup.password')?.touched){
-          <mat-error>must be more than six characters</mat-error>
-          }
         </mat-form-field>
+        @if(signUpForm.get('passwordGroup.password')?.errors?.["required"] &&
+        signUpForm.get('passwordGroup.password')?.touched){
+        <mat-error><small>Password is required</small></mat-error>
+        } @else if(signUpForm.get('passwordGroup.password')?.errors?.["pattern"]
+        && signUpForm.get('passwordGroup.password')?.touched){
+        <ul style="margin-top: 0; color: red" >
+          <li><small>Must be more than 8 characters long</small></li>
+          <li>
+            <small>At least one uppercase letter</small>
+          </li>
+          <li>
+            <small >At least one lowercase letter</small>
+          </li>
+          <li><small>At least one number letter</small></li>
+          <li>
+            <small >At least one special character</small>
+          </li>
+        </ul>
+        }
       </div>
       <div>
         <mat-form-field appearance="outline">
@@ -63,7 +75,14 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button [disabled]="showLoading()" (click)="demo()" mat-dialog-close>Demo</button>
+  <button
+    mat-button
+    [disabled]="showLoading()"
+    (click)="demo()"
+    mat-dialog-close
+  >
+    Demo
+  </button>
   <button
     mat-button
     cdkFocusInitial

@@ -63,5 +63,14 @@ export class FeatureComponent {
       this.closeDialog.emit();
       
     });
+    // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+
+    // const passwordInput = "abdeFg1teilcd"
+
+    // if (passwordRegex.test(passwordInput)) {
+    //   console.log("Password is valid");
+    // } else {
+    //   console.log("Password is not valid");
+    // }
   }
 }
