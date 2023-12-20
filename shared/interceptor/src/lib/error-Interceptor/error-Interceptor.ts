@@ -23,7 +23,6 @@ export class ErrorInterceptor implements HttpInterceptor {
       }),
       catchError((error: HttpErrorResponse) => {
         this.loadingService.hideLoading();
-        console.log(error, 'from error');
         if (error.error.message) {
           this.notificationService.open(error.error.message);
         } else {
