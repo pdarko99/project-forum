@@ -66,9 +66,10 @@ export class FeatureComponent {
           [
             Validators.required,
             Validators.pattern(
-              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()=^#])([A-Za-z\d@$!%*?&()=^#]){8,}$/
             ),
           ],
+
         ],
 
         confirmPassword: ['', [Validators.required]],
@@ -76,6 +77,8 @@ export class FeatureComponent {
       { validators: passwordMatcher }
     ),
   });
+
+
 
   signUp() {
     if (this.signUpForm.invalid) {
@@ -99,5 +102,4 @@ export class FeatureComponent {
     });
   }
 
-  demo() {}
 }

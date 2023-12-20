@@ -27,11 +27,9 @@
       "@project-forum/signIn/feature": [
         "auth/src/lib/signIn/feature/src/index.ts"
       ],
-      "@project-forum/signIn/ui": ["auth/src/lib/signIn/ui/src/index.ts"],
       "@project-forum/signUp/feature": [
         "auth/src/lib/signUp/feature/src/index.ts"
       ],
-      "@project-forum/signUp/ui": ["auth/src/lib/signUp/ui/src/index.ts"],
       "@project-forum/userData": ["auth/src/lib/model/src/index.ts"],
       "@project-forum/util": ["auth/src/lib/signUp/util/src/index.ts"]
     }
