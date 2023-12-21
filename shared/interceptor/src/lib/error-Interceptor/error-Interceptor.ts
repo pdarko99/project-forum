@@ -8,7 +8,7 @@ import {
 import { Injectable, inject } from '@angular/core';
 import { LoadingService } from '@project-forum/loading';
 import { NotificationService } from '@project-forum/notification';
-import { catchError, finalize, throwError } from 'rxjs';
+import { EMPTY, catchError, finalize } from 'rxjs';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -28,7 +28,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         } else {
           this.notificationService.open('an unexpected error occurred');
         }
-        return throwError(error);
+        return EMPTY;
       })
     );
   }
