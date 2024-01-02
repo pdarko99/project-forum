@@ -2,7 +2,11 @@ import { createStore, select, setProps, withProps } from '@ngneat/elf';
 
 import { withRequestsCache, withRequestsStatus } from '@ngneat/elf-requests';
 
-import { localStorageStrategy, persistState } from '@ngneat/elf-persist-state';
+import {
+  excludeKeys,
+  localStorageStrategy,
+  persistState,
+} from '@ngneat/elf-persist-state';
 import { UserData } from '@project-forum/userData';
 
 const authStore = createStore(
@@ -10,14 +14,15 @@ const authStore = createStore(
     name: 'authStoreName',
   },
   withProps<{
+    token: string;
     User: {
       firstName: UserData['firstName'];
-      token: string;
       tokenExpiration?: number;
       tokenTimestamp?: number;
     };
   }>({
-    User: { firstName: '', token: '' },
+    token: '',
+    User: { firstName: '' },
   }),
 
   withRequestsCache(),
@@ -27,6 +32,7 @@ const authStore = createStore(
 persistState(authStore, {
   key: 'authStore',
   storage: localStorageStrategy,
+  source: () => authStore.pipe(excludeKeys(['User'])),
 });
 
 export function setUser(
