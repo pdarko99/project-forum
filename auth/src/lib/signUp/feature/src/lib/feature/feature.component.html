@@ -45,17 +45,17 @@
         <mat-error><small>Password is required</small></mat-error>
         } @else if(signUpForm.get('passwordGroup.password')?.errors?.["pattern"]
         && signUpForm.get('passwordGroup.password')?.touched){
-        <ul style="margin-top: 0; color: red" >
+        <ul style="margin-top: 0; color: red">
           <li><small>Must be more than 8 characters long</small></li>
           <li>
             <small>At least one uppercase letter</small>
           </li>
           <li>
-            <small >At least one lowercase letter</small>
+            <small>At least one lowercase letter</small>
           </li>
           <li><small>At least one number letter</small></li>
           <li>
-            <small >At least one special character</small>
+            <small>At least one special character</small>
           </li>
         </ul>
         }
@@ -67,7 +67,7 @@
         </mat-form-field>
         @if(signUpForm.get('passwordGroup')?.errors?.["match"] &&
         signUpForm.get('passwordGroup.confirmPassword')?.touched){
-        <small style="color: red"> Passwords do not match </small>
+        <mat-error> Passwords do not match </mat-error>
         }
       </div>
     </section>

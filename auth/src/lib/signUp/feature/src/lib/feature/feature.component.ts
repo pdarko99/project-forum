@@ -59,26 +59,20 @@ export class FeatureComponent {
 
     email: ['', [Validators.required, Validators.email]],
 
-    passwordGroup: this.fb.group(
-      {
-        password: [
-          '',
-          [
-            Validators.required,
-            Validators.pattern(
-              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()=^#])([A-Za-z\d@$!%*?&()=^#]){8,}$/
-            ),
-          ],
-
+    passwordGroup: this.fb.group({
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()=^#])([A-Za-z\d@$!%*?&()=^#]){8,}$/
+          ),
         ],
+      ],
 
-        confirmPassword: ['', [Validators.required]],
-      },
-      { validators: passwordMatcher }
-    ),
+      confirmPassword: ['', [Validators.required, passwordMatcher]],
+    }),
   });
-
-
 
   signUp() {
     if (this.signUpForm.invalid) {
@@ -101,5 +95,4 @@ export class FeatureComponent {
       this.closeDialog.emit();
     });
   }
-
 }
