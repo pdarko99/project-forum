@@ -16,9 +16,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterOutlet } from '@angular/router';
 import { authDataDialog } from '@project-forum/auth-dialog';
 import { AuthService } from '@project-forum/data-access';
+import { HomeFeatureService } from '@project-forum/home/feature';
 import { map, shareReplay } from 'rxjs';
 import { ThemeManagerService } from './theme-manager/theme-manager.service';
-import {HomeFeatureService} from '@project-forum/home/feature';
 
 @Component({
   standalone: true,
@@ -41,13 +41,13 @@ export class AppComponent implements OnInit {
 
   protected readonly homeService = inject(HomeFeatureService);
 
-
   authService = inject(AuthService);
 
   userData = toSignal(this.authService.selectUserData$, {
     initialValue: { firstName: '', token: '' },
   });
 
+  userToken = toSignal(this.authService.selectUserToken$);
   forumList = toSignal(this.homeService.selectForums$);
 
   title = 'project-forum';
@@ -68,7 +68,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.userData().token) {
+    if (this.userToken()) {
+      console.log("yes token exist hurray")
       return this.authService.checkTokenStatus();
     }
     this.openDialog();

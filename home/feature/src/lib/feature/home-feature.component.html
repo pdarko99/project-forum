@@ -1,11 +1,17 @@
 @if(forum().length){
 <div>yes forums exist</div>
-}@else{ @if(userData().token){
+}@else{ @if(userToken()){
 <div class="noforum">
- <div>
+  <div>
     <p class="mat-headline-5" #text>No forum create a new forum below</p>
-    <button (click)="text.textContent = 'Not yet implemented'"  mat-raised-button color="primary">Create forum</button>
- </div>
+    <button
+      (click)="text.textContent = 'Not yet implemented'"
+      mat-raised-button
+      color="primary"
+    >
+      Create forum
+    </button>
+  </div>
 </div>
 
 } }

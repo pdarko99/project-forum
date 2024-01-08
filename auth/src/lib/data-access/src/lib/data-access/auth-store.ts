@@ -17,8 +17,6 @@ const authStore = createStore(
     token: string;
     User: {
       firstName: UserData['firstName'];
-      tokenExpiration?: number;
-      tokenTimestamp?: number;
     };
   }>({
     token: '',
@@ -38,27 +36,26 @@ persistState(authStore, {
 export function setUser(
   firstName: UserData['firstName'],
   token: string,
-  tokenExpiration?: number,
-  tokenTimestamp?: number
 ) {
+  console.log("yes updatding token")
   authStore.update(
     setProps({
+      token,
       User: {
         firstName,
-        token,
-        tokenExpiration,
-        tokenTimestamp,
       },
     })
   );
+
+  console.log(getToken());
 }
 
 export const selectUser$ = authStore.pipe(select((state) => state.User));
 
-export function getTokenExpiration() {
-  return authStore.query((state) => state.User.tokenExpiration);
+export const selectToken$ = authStore.pipe(select((state) => state.token));
+
+export function getToken() {
+  return authStore.query((state) => state.token);
 }
 
-export function getTokenTimestamp() {
-  return authStore.query((state) => state.User.tokenTimestamp);
-}
+

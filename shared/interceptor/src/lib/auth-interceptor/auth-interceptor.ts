@@ -5,13 +5,13 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { selectUser$ } from '@project-forum/data-access';
+import { selectToken$ } from '@project-forum/data-access';
 
 export class AuthInterceptor implements HttpInterceptor {
-  protected readonly userData = toSignal(selectUser$);
+  protected readonly userToken = toSignal(selectToken$);
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    const authToken = this.userData()?.token;
+    const authToken = this.userToken();
     const authRequest = req.clone({
       headers: req.headers.set('Authorization', 'Bearer ' + authToken),
     });

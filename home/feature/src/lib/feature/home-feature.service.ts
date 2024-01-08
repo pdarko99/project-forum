@@ -14,6 +14,8 @@ export class HomeFeatureService {
   public readonly getAllForums = (): Observable<forum[]> => {
     return this.http.get<forum[]>(this.url).pipe(
       tap((x) => {
+        console.log("getting forum")
+        console.log(x);
         setForum(x);
       })
     );

@@ -1,17 +1,23 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+  inject,
+} from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { FormsModule, NgForm } from '@angular/forms';
-import { SignInFeatureService } from './sign-in-feature.service';
-import { Output, EventEmitter } from '@angular/core';
 import { NotificationService } from '@project-forum/notification';
+import { jwtDecode } from 'jwt-decode';
+import { SignInFeatureService } from './sign-in-feature.service';
 
-import { LoadingService } from '@project-forum/loading';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { AuthService } from '@project-forum/data-access';
+import { LoadingService } from '@project-forum/loading';
 
 @Component({
   selector: 'project-forum-sign-in-feature',
@@ -43,26 +49,29 @@ export class FeatureComponent {
     this.signInService
       .signIn(form.value.email, form.value.password)
       .subscribe((res) => {
+        const decodedToken = jwtDecode(res.token);
+        console.log(res.expiresIn);
+        console.log(decodedToken, 'from decoded token');
         form.reset();
         this.notificationService.open(res.message);
 
-        this.authService.saveAuthData(res.token, res.firstName, res.expiresIn);
-        this.authService.setAuthTimer(res.expiresIn  * 1000);
+        this.authService.saveAuthData(res.token, res.firstName);
+        this.authService.setAuthTimer(res.expiresIn * 1000);
         this.closeDialog.emit();
-        
       });
   }
 
-  demo(){
-    this.signInService
-    .signIn("k@gmail.com", '123456')
-    .subscribe((res) => {
+  demo() {
+    this.signInService.signIn('k@gmail.com', '123456').subscribe((res) => {
+      console.log(res);
+
+      const decodedToken = jwtDecode(res.token);
+      console.log(res.expiresIn);
+      console.log(decodedToken, 'from decoded token');
       this.notificationService.open(res.message);
-      this.authService.saveAuthData(res.token, res.firstName, res.expiresIn);
-      this.authService.setAuthTimer(res.expiresIn  * 1000);
+      this.authService.saveAuthData(res.token, res.firstName);
+      this.authService.setAuthTimer(res.expiresIn * 1000);
       this.closeDialog.emit();
-      
     });
-  
   }
 }

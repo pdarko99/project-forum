@@ -1,0 +1,12 @@
+notification service setting the background color of the modal 
+mat error
+
+localize
+
+
+title
+
+camel Case in file name is not allowd it should be dashed
+
+i should decode the token on the frontend and retrieve the info there
+inteceptors now should be fuctions

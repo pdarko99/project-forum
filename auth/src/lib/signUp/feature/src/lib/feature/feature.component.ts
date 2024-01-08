@@ -90,7 +90,7 @@ export class FeatureComponent {
       this.signUpForm.reset();
       this.notificationService.open(res.message);
 
-      this.authService.saveAuthData(res.token, res.firstName, res.expiresIn);
+      this.authService.saveAuthData(res.token, res.firstName);
       this.authService.setAuthTimer(res.expiresIn * 1000);
       this.closeDialog.emit();
     });

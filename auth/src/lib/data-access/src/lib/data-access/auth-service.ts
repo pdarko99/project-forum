@@ -2,12 +2,9 @@
 import { Injectable, Injector, inject } from '@angular/core';
 import { authDataDialog } from '@project-forum/auth-dialog';
 import { NotificationService } from '@project-forum/notification';
-import {
-  getTokenExpiration,
-  getTokenTimestamp,
-  selectUser$,
-  setUser,
-} from './auth-store';
+import { getToken, selectToken$, selectUser$, setUser } from './auth-store';
+
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -20,13 +17,15 @@ export class AuthService {
 
   selectUserData$ = selectUser$;
 
-  saveAuthData(token: string, firstName: string, expiresIn: number) {
-    const tokenExpiration = expiresIn * 1000;
-    const tokenTimestamp = new Date().getTime();
-    setUser(firstName, token, tokenExpiration, tokenTimestamp);
+  selectUserToken$ = selectToken$;
+
+  saveAuthData(token: string, firstName: string) {
+    setUser(firstName, token);
   }
 
   setAuthTimer(timer: number) {
+    console.log("am being cleaed outtt ooo 2222")
+
     this.tokenTimer = setTimeout(() => {
       this.logout();
     }, timer);
@@ -43,24 +42,29 @@ export class AuthService {
     setUser('', '');
   }
 
-  private getTimeRemaining() {
-    const tokenTimestamp = getTokenTimestamp();
-    const tokenExpiration = getTokenExpiration();
+  checkTokenStatus() {
+    if (this.isTokenExpired()) return this.logout();
 
-    const currentTime = new Date().getTime();
-    const elapsedMilliseconds = currentTime - tokenTimestamp!;
-    const remainingMilliseconds = tokenExpiration! - elapsedMilliseconds;
-
-    return remainingMilliseconds;
+    const remainingMilliseconds = this.getTimeRemaining() * 1000;
+    console.log("am being cleaed outtt ooo")
+    this.setAuthTimer(remainingMilliseconds);
   }
 
-  checkTokenStatus() {
-    const remainingMilliseconds = this.getTimeRemaining();
+  private isTokenExpired(): boolean {
+    const decodedToken = jwtDecode(getToken());
 
-    if (remainingMilliseconds <= 0) {
-      this.logout();
-    } else {
-      this.setAuthTimer(remainingMilliseconds);
-    }
+    const currentTime = Math.floor(Date.now() / 1000);
+    const expirationTime = decodedToken.exp!;
+
+    return currentTime >= expirationTime;
+  }
+
+  private getTimeRemaining(): number {
+    const decodedToken = jwtDecode(getToken());
+
+    const currentTime = Math.floor(Date.now() / 1000);
+    const expirationTime = decodedToken.exp!;
+
+    return expirationTime - currentTime;
   }
 }
