@@ -1,10 +1,11 @@
-export interface forum {
+export type forum = {
   id: number;
   name: string;
   description: string;
-  logo: string;
-  url: string;
-  userId: number;
+  schoolName: string;
+  facultyName: string;
+  departmentName: string;
+  _id?:number
 
   // status: string;
   // user: User;
@@ -18,4 +19,4 @@ export interface forum {
   // forumProjects: forumProject[];
   // forumTeams: forumTeam[];
   // forumTeams: forumTeam[];
-}
+};

@@ -16,7 +16,7 @@ import { jwtDecode } from 'jwt-decode';
 import { SignInFeatureService } from './sign-in-feature.service';
 
 import { toSignal } from '@angular/core/rxjs-interop';
-import { AuthService } from '@project-forum/data-access';
+import { AuthService, ForumService } from '@project-forum/data-access';
 import { LoadingService } from '@project-forum/loading';
 
 @Component({
@@ -38,6 +38,7 @@ export class FeatureComponent {
   signInService = inject(SignInFeatureService);
   notificationService = inject(NotificationService);
   authService = inject(AuthService);
+  forumService = inject(ForumService);
 
   loadingService = inject(LoadingService);
 
@@ -49,13 +50,15 @@ export class FeatureComponent {
     this.signInService
       .signIn(form.value.email, form.value.password)
       .subscribe((res) => {
+        this.authService.saveAuthData(res.token, res.firstName);
+        this.forumService.getAllForums().subscribe();
         const decodedToken = jwtDecode(res.token);
-        console.log(res.expiresIn);
         console.log(decodedToken, 'from decoded token');
+        console.log(res.expiresIn);
+
         form.reset();
         this.notificationService.open(res.message);
 
-        this.authService.saveAuthData(res.token, res.firstName);
         this.authService.setAuthTimer(res.expiresIn * 1000);
         this.closeDialog.emit();
       });
@@ -63,13 +66,15 @@ export class FeatureComponent {
 
   demo() {
     this.signInService.signIn('k@gmail.com', '123456').subscribe((res) => {
+      this.authService.saveAuthData(res.token, res.firstName);
+      this.forumService.getAllForums().subscribe();
+
       console.log(res);
 
       const decodedToken = jwtDecode(res.token);
       console.log(res.expiresIn);
       console.log(decodedToken, 'from decoded token');
       this.notificationService.open(res.message);
-      this.authService.saveAuthData(res.token, res.firstName);
       this.authService.setAuthTimer(res.expiresIn * 1000);
       this.closeDialog.emit();
     });

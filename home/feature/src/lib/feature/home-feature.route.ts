@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 
 export const HOME_PAGE: Route = {
-  path: 'forum',
+  path: 'home',
   loadComponent: () => import('./home-feature.component'),
 };

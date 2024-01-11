@@ -4,11 +4,7 @@
 <div class="noforum">
   <div>
     <p class="mat-headline-5" #text>No forum create a new forum below</p>
-    <button
-      (click)="text.textContent = 'Not yet implemented'"
-      mat-raised-button
-      color="primary"
-    >
+    <button routerLink="/create-forum" mat-raised-button color="primary">
       Create forum
     </button>
   </div>

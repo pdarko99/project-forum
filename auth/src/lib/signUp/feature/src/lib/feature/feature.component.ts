@@ -17,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AuthService } from '@project-forum/data-access';
+import { AuthService, ForumService } from '@project-forum/data-access';
 import { LoadingService } from '@project-forum/loading';
 import { NotificationService } from '@project-forum/notification';
 import { passwordMatcher } from '@project-forum/util';
@@ -41,6 +41,7 @@ export class FeatureComponent {
   @Output() closeDialog = new EventEmitter();
 
   authService = inject(AuthService);
+  forumService = inject(ForumService);
 
   loadingService = inject(LoadingService);
 
@@ -91,6 +92,8 @@ export class FeatureComponent {
       this.notificationService.open(res.message);
 
       this.authService.saveAuthData(res.token, res.firstName);
+      this.forumService.getAllForums().subscribe();
+
       this.authService.setAuthTimer(res.expiresIn * 1000);
       this.closeDialog.emit();
     });

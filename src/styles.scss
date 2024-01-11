@@ -17,8 +17,12 @@
 @include mat.tabs-theme(themes.$my-app-light-theme);
 @include mat.form-field-theme(themes.$my-app-light-theme);
 @include mat.snack-bar-theme(themes.$my-app-light-theme);
+@include mat.stepper-theme(themes.$my-app-light-theme);
+
 
 @include mat.core-theme(themes.$my-app-light-theme);
+
+
 
 @include mat.typography-hierarchy(config.$my-app-typography);
 

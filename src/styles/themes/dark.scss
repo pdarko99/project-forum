@@ -13,6 +13,5 @@
   @include mat.sidenav-color(themes.$my-app-dark-theme);
   @include mat.list-color(themes.$my-app-dark-theme);
   @include mat.form-field-color(themes.$my-app-dark-theme);
-
-  
+  @include mat.stepper-color(themes.$my-app-dark-theme);
 }

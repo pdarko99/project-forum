@@ -15,14 +15,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@project-forum/Interceptor": ["shared/interceptor/src/index.ts"],
       "@project-forum/auth": ["auth/src/index.ts"],
       "@project-forum/auth-dialog": ["auth/src/lib/authDialog/src/index.ts"],
+      "@project-forum/create-forum": ["forum/src/index.ts"],
       "@project-forum/data-access": ["auth/src/lib/data-access/src/index.ts"],
-      "@project-forum/Interceptor": ["shared/interceptor/src/index.ts"],
       "@project-forum/home/feature": ["home/feature/src/index.ts"],
+      "@project-forum/home/model": ["home/model/src/index.ts"],
       "@project-forum/home/ui": ["home/ui/src/index.ts"],
       "@project-forum/loading": ["shared/loading/src/index.ts"],
-      "@project-forum/home/model": ["home/model/src/index.ts"],
       "@project-forum/notification": ["shared/notification/src/index.ts"],
       "@project-forum/signIn/feature": [
         "auth/src/lib/signIn/feature/src/index.ts"

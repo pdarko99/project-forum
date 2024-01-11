@@ -1,28 +1,16 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { forum } from '@project-forum/home/model';
-import { Observable, filter, map, tap } from 'rxjs';
-import { selectForumDataSource$, setForum } from './home-feature.store';
+import { Injectable } from '@angular/core';
+import { filter, map, tap } from 'rxjs';
+import { selectForumDataSource$ } from './home-feature.store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HomeFeatureService {
-  url = 'http://localhost:3000/api/forum/';
-  http = inject(HttpClient);
-
-  public readonly getAllForums = (): Observable<forum[]> => {
-    return this.http.get<forum[]>(this.url).pipe(
-      tap((x) => {
-        console.log("getting forum")
-        console.log(x);
-        setForum(x);
-      })
-    );
-  };
-
   public readonly selectForums$ = selectForumDataSource$.pipe(
+    tap((x) => console.log(x, 'frm tap111')),
+
     filter((data) => !data.loading),
-    map((data) => data.forum)
+    map((data) => data.forum),
+    tap((x) => console.log(x, 'frm tap'))
   );
 }

@@ -1,0 +1,42 @@
+<form #schoolDetails="ngForm">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter school name</mat-label>
+      <input
+        name="schoolName"
+        required
+        type="text"
+        matInput
+        [(ngModel)]="createForumService.forum.schoolName"
+        #schoolNameInput="ngModel"
+      />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter faculty name</mat-label>
+      <input
+        name="facultyName"
+        required
+        type="text"
+        matInput
+        [(ngModel)]="createForumService.forum.facultyName"
+        #facultyNameInput="ngModel"
+      />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter department name</mat-label>
+      <input
+        name="departmentName"
+        required
+        type="text"
+        matInput
+        [(ngModel)]="createForumService.forum.departmentName"
+        #departmentNameInput="ngModel"
+      />
+    </mat-form-field>
+  </div>
+</form>

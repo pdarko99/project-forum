@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,7 +7,8 @@ import {
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthService } from '@project-forum/data-access';
+import { RouterLink } from '@angular/router';
+import { AuthService, ForumService } from '@project-forum/data-access';
 import { HomeFeatureService } from './home-feature.service';
 
 @Component({
@@ -15,10 +17,12 @@ import { HomeFeatureService } from './home-feature.service';
   templateUrl: './home-feature.component.html',
   styleUrl: './home-feature.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatButtonModule],
+  imports: [MatButtonModule, RouterLink],
 })
 export default class FeatureComponent implements OnInit {
   protected readonly authService = inject(AuthService);
+  protected readonly forumService = inject(ForumService);
+
 
   protected readonly homeService = inject(HomeFeatureService);
 
@@ -30,13 +34,19 @@ export default class FeatureComponent implements OnInit {
     initialValue: [],
   });
 
-  // selectUserToken
+  // selectUserToken'
+
+  // private getForumsEffect = effect(() => {
+  //   if (this.userToken()) {
+  //     this.homeService.getAllForums().subscribe();
+  //   }
+  // });
 
   ngOnInit(): void {
-    console.log("naaaaa")
+    console.log('naaaaa');
     if (this.userToken()) {
-      console.log("yes")
-      this.homeService.getAllForums().subscribe();
+      console.log('yes');
+      this.forumService.getAllForums().subscribe();
     }
   }
 }

@@ -1,0 +1,65 @@
+<main>
+  <mat-stepper linear #stepper class="stepper">
+    <mat-step [completed]="createForum.forumDetailsStep()">
+      <ng-template matStepLabel>Forum details</ng-template>
+
+      <project-forum-forum-details />
+      <div style="text-align: right">
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step [completed]="createForum.schoolDetailsStep()">
+      <ng-template matStepLabel>School details</ng-template>
+      <project-forum-school-details />
+
+      <div style="text-align: right; padding-left: 1em">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button
+          style="margin-left: 1em"
+          mat-raised-button
+          color="primary"
+          matStepperNext
+        >
+          Next
+        </button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+
+      <div
+        #content
+        class="mat-body"
+        style="margin-top: 1em; text-align: center"
+      >
+        Please submit to generate a link which you can use to invite students
+        into the forum
+      </div>
+
+      @if((submitted())){
+      <div class="copy-container">
+        <span class="link-text">{{ forumLink() }}</span>
+        <button (click)="copyToClipboard()" mat-icon-button class="copy-button">
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </div>
+
+      <div style="text-align: right; padding-left: 1em; margin-top: 3em">
+        <button mat-raised-button routerLink="/home">Go to dashboard</button>
+      </div>
+      }@else {
+      <div style="text-align: right; padding-left: 1em; margin-top: 3em">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button
+          mat-raised-button
+          style="margin-left: 1em"
+          color="primary"
+          (click)="submitForm()"
+        >
+          Submit
+        </button>
+      </div>
+      }
+    </mat-step>
+  </mat-stepper>
+</main>
