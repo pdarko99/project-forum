@@ -50,6 +50,8 @@ export class FeatureComponent {
   signUpService = inject(SignUpFeatureService);
 
   notificationService = inject(NotificationService);
+  forums = toSignal(this.forumService.homeService.selectForums$)
+
 
   private fb = inject(FormBuilder);
 
@@ -92,7 +94,9 @@ export class FeatureComponent {
       this.notificationService.open(res.message);
 
       this.authService.saveAuthData(res.token, res.firstName);
-      this.forumService.getAllForums().subscribe();
+      if (!this.forums()) {
+        this.forumService.getAllForums().subscribe();
+      }
 
       this.authService.setAuthTimer(res.expiresIn * 1000);
       this.closeDialog.emit();

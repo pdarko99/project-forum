@@ -40,6 +40,8 @@ export class FeatureComponent {
   authService = inject(AuthService);
   forumService = inject(ForumService);
 
+  forums = toSignal(this.forumService.homeService.selectForums$);
+
   loadingService = inject(LoadingService);
 
   showLoading = toSignal(this.loadingService.loading$);
@@ -51,7 +53,9 @@ export class FeatureComponent {
       .signIn(form.value.email, form.value.password)
       .subscribe((res) => {
         this.authService.saveAuthData(res.token, res.firstName);
-        this.forumService.getAllForums().subscribe();
+        if (!this.forums()) {
+          this.forumService.getAllForums().subscribe();
+        }
         const decodedToken = jwtDecode(res.token);
         console.log(decodedToken, 'from decoded token');
         console.log(res.expiresIn);

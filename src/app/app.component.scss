@@ -25,10 +25,17 @@
     align-items: center;
   }
 }
+
+.active{
+  background-color:  blue;
+  color:red
+}
 .spacer {
   flex: 1 1 auto;
 }
 
-
-
-
+.list-items {
+  display: flex;
+  align-items: center;
+  // justify-content: center;
+}

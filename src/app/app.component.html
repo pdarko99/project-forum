@@ -18,7 +18,12 @@
 
     <mat-nav-list>
       @for (item of forumList(); track item.id) {
-      <a mat-list-item> {{ item.name }} </a>
+      <mat-list-item [routerLink]="['/home', item.name]" routerLinkActive="active">
+        <a>{{ item.name }}</a>
+        <button mat-icon-button matListItemMeta>
+          <mat-icon>forum</mat-icon>
+        </button>
+      </mat-list-item>
       } @empty {
       <a mat-list-item>No forum created </a>
       }

@@ -10,3 +10,10 @@ camel Case in file name is not allowd it should be dashed
 
 i should decode the token on the frontend and retrieve the info there
 inteceptors now should be fuctions
+
+
+15TH JANUARY,
+
+WHY IS THAT view children in the component file doesn't work but in the app.route file works
+
+effects

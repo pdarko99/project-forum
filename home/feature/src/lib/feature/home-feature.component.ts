@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService, ForumService } from '@project-forum/data-access';
 import { HomeFeatureService } from './home-feature.service';
 
@@ -17,12 +17,11 @@ import { HomeFeatureService } from './home-feature.service';
   templateUrl: './home-feature.component.html',
   styleUrl: './home-feature.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatButtonModule, RouterLink],
+  imports: [MatButtonModule, RouterLink, RouterOutlet],
 })
 export default class FeatureComponent implements OnInit {
   protected readonly authService = inject(AuthService);
   protected readonly forumService = inject(ForumService);
-
 
   protected readonly homeService = inject(HomeFeatureService);
 

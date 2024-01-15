@@ -13,7 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { authDataDialog } from '@project-forum/auth-dialog';
 import { AuthService } from '@project-forum/data-access';
 import { HomeFeatureService } from '@project-forum/home/feature';
@@ -30,6 +30,8 @@ import { ThemeManagerService } from './theme-manager/theme-manager.service';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    RouterLink,
+    RouterLinkActive
   ],
   selector: 'project-forum-root',
   templateUrl: './app.component.html',
