@@ -1,14 +1,18 @@
 @if(forum().length){
 <router-outlet></router-outlet>
-
-}@else{ @if(userToken()){
+}@else{ @if(userToken()) { @if(showLoading()){
 <div class="noforum">
   <div>
-    <p class="mat-headline-5" #text>No forum create a new forum below</p>
+    <p class="mat-headline-6">loading ...</p>
+  </div>
+</div>
+}@else {
+<div class="noforum">
+  <div>
+    <p class="mat-headline-5">No forum create a new forum below</p>
     <button routerLink="/create-forum" mat-raised-button color="primary">
       Create forum
     </button>
   </div>
 </div>
-
-} }
+}}}

@@ -26,13 +26,9 @@ export default class SchoolDetailsComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.schoolDetailsForm.statusChanges!.subscribe((status) => {
-      console.log('Form status changed:', status);
-
       if (status === 'VALID') {
-        console.log('valid');
         this.createForumService.schoolDetailsStep.set(true);
       } else {
-        console.log('invalid');
         this.createForumService.schoolDetailsStep.set(false);
       }
     });

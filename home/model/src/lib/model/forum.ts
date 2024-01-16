@@ -1,11 +1,10 @@
 export type forum = {
-  id: number;
+  id: string;
   name: string;
   description: string;
   schoolName: string;
   facultyName: string;
   departmentName: string;
-  _id?:number
 
   // status: string;
   // user: User;
@@ -20,3 +19,9 @@ export type forum = {
   // forumTeams: forumTeam[];
   // forumTeams: forumTeam[];
 };
+
+export type forumBackend = {
+  _id: string;
+};
+
+export type ForumBackend = forum & forumBackend;

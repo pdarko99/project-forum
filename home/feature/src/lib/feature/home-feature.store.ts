@@ -1,6 +1,5 @@
 import { createStore } from '@ngneat/elf';
 import {
-  getAllEntities,
   //   getAllEntities,
   selectAllEntities,
   setEntities,
@@ -38,21 +37,12 @@ const forumDataSource = createRequestDataSource({
   store: forumStore,
 });
 
-export function setForum(forum: forum[]) {
-  console.log(forum, 'from save');
-
-  const forums = forum.map((foru) => {
-    return { ...foru, id: foru._id || 0 };
-  });
-
-  console.log(forums, 'from new updated');
+export function setForum(forums: forum[]) {
   forumStore.update(
     setEntities(forums),
     forumDataSource.setSuccess(),
     forumDataSource.setCached()
   );
-
-  console.log(forumStore.query(getAllEntities()), 'from qetAllEntities');
 }
 
 export const selectForumDataSource$ = forumDataSource.data$();

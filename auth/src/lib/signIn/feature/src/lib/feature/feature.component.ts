@@ -12,7 +12,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NotificationService } from '@project-forum/notification';
-import { jwtDecode } from 'jwt-decode';
 import { SignInFeatureService } from './sign-in-feature.service';
 
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -56,13 +55,8 @@ export class FeatureComponent {
         if (!this.forums()) {
           this.forumService.getAllForums().subscribe();
         }
-        const decodedToken = jwtDecode(res.token);
-        console.log(decodedToken, 'from decoded token');
-        console.log(res.expiresIn);
-
         form.reset();
         this.notificationService.open(res.message);
-
         this.authService.setAuthTimer(res.expiresIn * 1000);
         this.closeDialog.emit();
       });
@@ -72,12 +66,6 @@ export class FeatureComponent {
     this.signInService.signIn('k@gmail.com', '123456').subscribe((res) => {
       this.authService.saveAuthData(res.token, res.firstName);
       this.forumService.getAllForums().subscribe();
-
-      console.log(res);
-
-      const decodedToken = jwtDecode(res.token);
-      console.log(res.expiresIn);
-      console.log(decodedToken, 'from decoded token');
       this.notificationService.open(res.message);
       this.authService.setAuthTimer(res.expiresIn * 1000);
       this.closeDialog.emit();

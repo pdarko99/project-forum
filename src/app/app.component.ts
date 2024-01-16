@@ -31,7 +31,7 @@ import { ThemeManagerService } from './theme-manager/theme-manager.service';
     MatSidenavModule,
     MatListModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
   ],
   selector: 'project-forum-root',
   templateUrl: './app.component.html',
@@ -71,7 +71,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.userToken()) {
-      console.log("yes token exist hurray")
       return this.authService.checkTokenStatus();
     }
     this.openDialog();

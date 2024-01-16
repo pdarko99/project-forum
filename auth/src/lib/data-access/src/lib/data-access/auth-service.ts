@@ -24,11 +24,9 @@ export class AuthService {
   }
 
   setAuthTimer(timer: number) {
-    console.log("am being cleaed outtt ooo 2222")
 
     this.tokenTimer = setTimeout(() => {
       this.logout();
-      console.log('time up');
     }, timer);
   }
 
@@ -45,11 +43,8 @@ export class AuthService {
 
   checkTokenStatus() {
     if (this.isTokenExpired()) return this.logout();
-    console.log(this.getTimeRemaining());
 
     const remainingMilliseconds = this.getTimeRemaining() * 1000;
-    console.log(remainingMilliseconds, 'remaining time in milliseconds');
-    console.log("am being cleaed outtt ooo")
     this.setAuthTimer(remainingMilliseconds);
   }
 

@@ -48,7 +48,6 @@ export default class CreateForumComponent {
 
   submitForm() {
     this.createForum.newForum().subscribe((res) => {
-      console.log(res);
       this.forumLink.set(res.link);
       this.contentElementRef.nativeElement.textContent =
         'Thank you! Please copy link below';

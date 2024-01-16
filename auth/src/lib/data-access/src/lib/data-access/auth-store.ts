@@ -37,7 +37,6 @@ export function setUser(
   firstName: UserData['firstName'],
   token: string,
 ) {
-  console.log("yes updatding token")
   authStore.update(
     setProps({
       token,
@@ -47,7 +46,6 @@ export function setUser(
     })
   );
 
-  console.log(getToken());
 }
 
 export const selectUser$ = authStore.pipe(select((state) => state.User));

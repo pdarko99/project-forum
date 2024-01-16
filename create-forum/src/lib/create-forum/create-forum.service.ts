@@ -12,7 +12,7 @@ export class CreateForumService {
   schoolDetailsStep = signal<boolean>(false);
 
   forum: forum = {
-    id: 0,
+    id: '',
     name: '',
     description: '',
     schoolName: '',
@@ -21,13 +21,12 @@ export class CreateForumService {
   };
 
   newForum() {
-    console.log(this.forum);
-    return this.http.post<{link:string}>(this.url, this.forum);
+    return this.http.post<{ link: string }>(this.url, this.forum);
   }
 
   resetForum() {
     return (this.forum = {
-      id: 0,
+      id: '',
       name: '',
       description: '',
       schoolName: '',
