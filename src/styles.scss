@@ -18,11 +18,9 @@
 @include mat.form-field-theme(themes.$my-app-light-theme);
 @include mat.snack-bar-theme(themes.$my-app-light-theme);
 @include mat.stepper-theme(themes.$my-app-light-theme);
-
+@include mat.divider-theme(themes.$my-app-light-theme);
 
 @include mat.core-theme(themes.$my-app-light-theme);
-
-
 
 @include mat.typography-hierarchy(config.$my-app-typography);
 
@@ -43,5 +41,3 @@ body {
   background: #f44336 !important;
   color: white !important;
 }
-
-

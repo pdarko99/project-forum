@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
@@ -32,6 +33,7 @@ import { ThemeManagerService } from './theme-manager/theme-manager.service';
     MatListModule,
     RouterLink,
     RouterLinkActive,
+    MatDividerModule,
   ],
   selector: 'project-forum-root',
   templateUrl: './app.component.html',

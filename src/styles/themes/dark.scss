@@ -14,4 +14,7 @@
   @include mat.list-color(themes.$my-app-dark-theme);
   @include mat.form-field-color(themes.$my-app-dark-theme);
   @include mat.stepper-color(themes.$my-app-dark-theme);
+  @include mat.divider-color(themes.$my-app-dark-theme);
+
+
 }

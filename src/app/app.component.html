@@ -7,7 +7,7 @@
     [mode]="isHandset() ? 'over' : 'side'"
     opened="false"
   >
-    <mat-toolbar class="sidenavToolbar">
+    <mat-toolbar class="sidenavToolbar" [color]="!isDark() ? 'primary' : ''">
       <div>Forum</div>
       @if(drawer.opened){
       <div class="icon-container">
@@ -18,12 +18,13 @@
 
     <mat-nav-list>
       @for (item of forumList(); track item.id) {
-      <mat-list-item [routerLink]="['/home', item.id]" routerLinkActive="'primary">
+      <mat-list-item [routerLink]="['/home', item.id]">
         <a>{{ item.name }}</a>
         <button mat-icon-button matListItemMeta>
           <mat-icon>forum</mat-icon>
         </button>
       </mat-list-item>
+      <mat-divider></mat-divider>
       } @empty {
       <a mat-list-item>No forum created </a>
       }
