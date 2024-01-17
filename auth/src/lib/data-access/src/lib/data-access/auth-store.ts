@@ -30,7 +30,7 @@ const authStore = createStore(
 persistState(authStore, {
   key: 'authStore',
   storage: localStorageStrategy,
-  source: () => authStore.pipe(excludeKeys(['User'])),
+  // source: () => authStore.pipe(excludeKeys(['User'])),
 });
 
 export function setUser(

@@ -28,7 +28,7 @@ export class ForumService {
       }),
       tap((x) => {
         if (x.length) {
-          this.selectedFirstForumToBeDisplayed.set(x[0].name);
+          this.selectedFirstForumToBeDisplayed.set(x[0].id);
         }
         setForum(x);
       })

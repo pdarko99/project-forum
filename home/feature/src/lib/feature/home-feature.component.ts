@@ -44,7 +44,9 @@ export default class FeatureComponent implements OnInit {
   });
 
   protected readonly selectedFirstForumToBeDisplayedEffectFn = effect(() => {
-    this.router.navigate([`/home/${this.selectedFirstForumToBeDisplayed()}`]);
+    if (this.router.url === '/home') {
+      this.router.navigate([`/home/${this.selectedFirstForumToBeDisplayed()}`]);
+    }
   });
 
   // selectUserToken'

@@ -18,7 +18,7 @@
 
     <mat-nav-list>
       @for (item of forumList(); track item.id) {
-      <mat-list-item [routerLink]="['/home', item.name]" routerLinkActive="active">
+      <mat-list-item [routerLink]="['/home', item.id]" routerLinkActive="'primary">
         <a>{{ item.name }}</a>
         <button mat-icon-button matListItemMeta>
           <mat-icon>forum</mat-icon>
