@@ -12,7 +12,7 @@ import { Observable, map, tap } from 'rxjs';
 export class ForumService {
   homeService = inject(HomeFeatureService);
 
-  selectedFirstForumToBeDisplayed = signal({});
+  selectedFirstForumToBeDisplayed = signal('');
 
   url = 'http://localhost:3000/api/forum/';
   http = inject(HttpClient);
