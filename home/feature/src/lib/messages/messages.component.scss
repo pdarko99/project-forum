@@ -1,0 +1,79 @@
+main {
+  width: 100%;
+  height: 100%;
+  .messages-container {
+    height: 90vh;
+  }
+
+  .messages-sidenav-content {
+    height: 100%;
+    width: 100%;
+  }
+
+  .messages-sidenav {
+    padding: 20px;
+    width: 30%;
+  }
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+  img {
+    height: 70px;
+    border-radius: 50%;
+  }
+
+  .user-details {
+    padding-left: 1.5em;
+  }
+}
+
+/* CSS styles for messages */
+
+.chat {
+  width: 100%;
+  height: 80%;
+  .chat-container {
+    width: 100%;
+    padding-top: 1em;
+    // position: fixed;
+    height: 100%;
+    overflow-y: scroll;
+  }
+
+  .message-sender {
+    min-width: 100px;
+    max-width: 300px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: #ecf0f1;
+    color: #333;
+    margin-right: 2em;
+    line-height: 1.5em;
+  }
+
+  .message-receiver {
+    min-width: 150px;
+
+    margin-left: 2em;
+    max-width: 300px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: #3498db;
+    color: #fff;
+    line-height: 1.5em;
+  }
+
+  .sender {
+    display: flex;
+  }
+
+  .receiver {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

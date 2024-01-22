@@ -1,1 +1,18 @@
-<p>{{forum}}</p>
+<main>
+  <mat-tab-group mat-stretch-tabs="true" mat-align-tabs="start">
+    <mat-tab label="Messages">
+      <ng-template mat-tab-label>
+        <span style="margin-right: 5px">Messages</span>
+        <i class="material-icons">message</i>
+      </ng-template>
+      <project-forum-messages  />
+    </mat-tab>
+    <mat-tab label="Attachments">
+      <ng-template mat-tab-label>
+        <span style="margin-right: 5px">Attachments</span>
+        <i class="material-icons">attach_file</i>
+      </ng-template>
+      <!-- Content for the "Attachments" tab goes here -->
+    </mat-tab>
+  </mat-tab-group>
+</main>
