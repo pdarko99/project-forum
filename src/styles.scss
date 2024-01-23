@@ -19,6 +19,8 @@
 @include mat.snack-bar-theme(themes.$my-app-light-theme);
 @include mat.stepper-theme(themes.$my-app-light-theme);
 @include mat.divider-theme(themes.$my-app-light-theme);
+@include mat.badge-theme(themes.$my-app-light-theme);
+
 
 @include mat.core-theme(themes.$my-app-light-theme);
 

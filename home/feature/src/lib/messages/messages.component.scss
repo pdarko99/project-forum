@@ -77,3 +77,32 @@ main {
     justify-content: flex-end;
   }
 }
+
+.identity-container {
+  display: flex;
+  align-items: center;
+}
+
+.list-container{
+  height: inherit;
+  padding: 1em 0;
+}
+
+/* Your CSS file */
+.circular-badge {
+  position: relative;
+  width: 30px; /* Adjust the width and height as needed for your design */
+  height: 30px;
+  border-radius: 50%; /* Makes the badge circular */
+  background-color: #007bff; /* Set the background color for the circular badge */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Set the text color for the badge */
+  font-weight: bold;
+}
+
+.badge-content {
+  z-index: 1;
+}
+
