@@ -16,6 +16,7 @@ export class SignUpFeatureService {
       token: string;
       expiresIn: number;
       userId: string;
+      admin: boolean;
     }>(this.url, userData);
   }
 }

@@ -20,6 +20,7 @@
       "@project-forum/auth-dialog": ["auth/src/lib/authDialog/src/index.ts"],
       "@project-forum/create-forum": ["forum/src/index.ts"],
       "@project-forum/data-access": ["auth/src/lib/data-access/src/index.ts"],
+      "@project-forum/forum-invitation": ["forum-invitation/src/index.ts"],
       "@project-forum/home/feature": ["home/feature/src/index.ts"],
       "@project-forum/home/model": ["home/model/src/index.ts"],
       "@project-forum/home/ui": ["home/ui/src/index.ts"],

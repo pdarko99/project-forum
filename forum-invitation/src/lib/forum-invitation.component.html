@@ -1,0 +1,21 @@
+<main>
+  <div class="noforum">
+    <div>
+      <p class="mat-headline-5">
+        You've been invited to join
+        <span style="font-style: italic">{{ forumName }}</span> forum
+      </p>
+      <button (click)="addForum()" mat-raised-button color="primary">
+        Accept
+      </button>
+      <button
+        style="margin-left: 1em"
+        (click)="rejectForum()"
+        mat-raised-button
+        color="warn"
+      >
+        Decline
+      </button>
+    </div>
+  </div>
+</main>

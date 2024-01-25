@@ -51,9 +51,15 @@ export class FeatureComponent {
     this.signInService
       .signIn(form.value.email, form.value.password)
       .subscribe((res) => {
-        this.authService.saveAuthData(res.token, res.firstName);
+        this.authService.saveAuthData(res.token, res.firstName, res.admin);
         if (!this.forums()) {
-          this.forumService.getAllForums().subscribe();
+          if (res.admin) {
+            this.forumService.getAllForums().subscribe();
+          } else {
+            // this.forumService.setUserForums()
+
+            console.log('hello');
+          }
         }
         form.reset();
         this.notificationService.open(res.message);
@@ -64,7 +70,7 @@ export class FeatureComponent {
 
   demo() {
     this.signInService.signIn('k@gmail.com', '123456').subscribe((res) => {
-      this.authService.saveAuthData(res.token, res.firstName);
+      this.authService.saveAuthData(res.token, res.firstName, res.admin);
       this.forumService.getAllForums().subscribe();
       this.notificationService.open(res.message);
       this.authService.setAuthTimer(res.expiresIn * 1000);

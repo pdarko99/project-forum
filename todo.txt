@@ -1,0 +1,1 @@
+populate the backend with forums so that in the admin i just set the forums array to the setForum method which is going to be displayed if user is not an admin

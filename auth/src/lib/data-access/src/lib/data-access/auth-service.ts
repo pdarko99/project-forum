@@ -2,9 +2,21 @@
 import { Injectable, Injector, inject } from '@angular/core';
 import { authDataDialog } from '@project-forum/auth-dialog';
 import { NotificationService } from '@project-forum/notification';
-import { getToken, selectToken$, selectUser$, setUser } from './auth-store';
+import {
+  getToken,
+  selectIsAdmin$,
+  selectToken$,
+  selectUser$,
+  setAdmin,
+  setUser,
+} from './auth-store';
 
 import { jwtDecode } from 'jwt-decode';
+
+interface JwtPayload {
+  admin: boolean;
+  exp: number;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -19,12 +31,13 @@ export class AuthService {
 
   selectUserToken$ = selectToken$;
 
-  saveAuthData(token: string, firstName: string) {
-    setUser(firstName, token);
+  IsAdmin$ = selectIsAdmin$;
+
+  saveAuthData(token: string, firstName: string, admin: boolean) {
+    setUser(firstName, token, admin);
   }
 
   setAuthTimer(timer: number) {
-
     this.tokenTimer = setTimeout(() => {
       this.logout();
     }, timer);
@@ -58,7 +71,9 @@ export class AuthService {
   }
 
   private getTimeRemaining(): number {
-    const decodedToken = jwtDecode(getToken());
+    const decodedToken: JwtPayload = jwtDecode(getToken());
+
+    setAdmin(decodedToken.admin);
 
     const currentTime = Math.floor(Date.now() / 1000);
     const expirationTime = decodedToken.exp!;

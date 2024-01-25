@@ -19,8 +19,7 @@ export class SignInFeatureService {
       token: string;
       expiresIn: number;
       userId: string;
+      admin: boolean;
     }>(this.url, authData);
   }
-
-  
 }

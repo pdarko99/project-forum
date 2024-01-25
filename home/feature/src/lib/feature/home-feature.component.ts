@@ -39,6 +39,10 @@ export default class FeatureComponent implements OnInit {
     initialValue: '',
   });
 
+  protected readonly isAdmin = toSignal(this.authService.IsAdmin$, {
+    initialValue: false,
+  });
+
   protected readonly forum = toSignal(this.homeService.selectForums$, {
     initialValue: [],
   });
@@ -59,7 +63,9 @@ export default class FeatureComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.userToken()) {
-      this.forumService.getAllForums().subscribe();
+      if (this.isAdmin()) {
+        this.forumService.getAllForums().subscribe();
+      }
     }
   }
 }

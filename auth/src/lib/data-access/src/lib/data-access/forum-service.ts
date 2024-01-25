@@ -34,4 +34,12 @@ export class ForumService {
       })
     );
   };
+
+  public readonly setUserForums = (forums: ForumBackend[]) => {
+    const formattedForum = forums.map((forum) => ({
+      ...forum,
+      id: forum._id,
+    })) as forum[];
+    setForum(formattedForum);
+  };
 }

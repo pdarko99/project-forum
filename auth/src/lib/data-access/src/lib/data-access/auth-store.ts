@@ -18,9 +18,15 @@ const authStore = createStore(
     User: {
       firstName: UserData['firstName'];
     };
+    Admin: {
+      isAdmin: boolean;
+    };
   }>({
     token: '',
     User: { firstName: '' },
+    Admin: {
+      isAdmin: false,
+    },
   }),
 
   withRequestsCache(),
@@ -30,12 +36,13 @@ const authStore = createStore(
 persistState(authStore, {
   key: 'authStore',
   storage: localStorageStrategy,
-  // source: () => authStore.pipe(excludeKeys(['User'])),
+  source: () => authStore.pipe(excludeKeys(['Admin'])),
 });
 
 export function setUser(
   firstName: UserData['firstName'],
   token: string,
+  admin?: boolean
 ) {
   authStore.update(
     setProps({
@@ -43,17 +50,31 @@ export function setUser(
       User: {
         firstName,
       },
+      Admin: {
+        isAdmin: admin ? admin : false,
+      },
     })
   );
+}
 
+export function setAdmin(admin: boolean) {
+  authStore.update(
+    setProps({
+      Admin: {
+        isAdmin: admin,
+      },
+    })
+  );
 }
 
 export const selectUser$ = authStore.pipe(select((state) => state.User));
 
 export const selectToken$ = authStore.pipe(select((state) => state.token));
 
+export const selectIsAdmin$ = authStore.pipe(
+  select((state) => state.Admin.isAdmin)
+);
+
 export function getToken() {
   return authStore.query((state) => state.token);
 }
-
-
