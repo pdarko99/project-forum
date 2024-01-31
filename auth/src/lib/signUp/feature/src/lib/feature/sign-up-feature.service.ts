@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { ForumBackend } from '@project-forum/home/model';
 import { UserData } from '@project-forum/userData';
 
 @Injectable({
@@ -17,6 +18,7 @@ export class SignUpFeatureService {
       expiresIn: number;
       userId: string;
       admin: boolean;
+      forum: ForumBackend[];
     }>(this.url, userData);
   }
 }

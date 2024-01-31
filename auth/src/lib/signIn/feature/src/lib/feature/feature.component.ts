@@ -56,9 +56,7 @@ export class FeatureComponent {
           if (res.admin) {
             this.forumService.getAllForums().subscribe();
           } else {
-            // this.forumService.setUserForums()
-
-            console.log('hello');
+            this.forumService.setUserForums(res.forum);
           }
         }
         form.reset();

@@ -65,6 +65,8 @@ export default class FeatureComponent implements OnInit {
     if (this.userToken()) {
       if (this.isAdmin()) {
         this.forumService.getAllForums().subscribe();
+      } else {
+        this.forumService.getUserForum().subscribe();
       }
     }
   }

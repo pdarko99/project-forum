@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { ForumBackend } from '@project-forum/home/model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class SignInFeatureService {
       expiresIn: number;
       userId: string;
       admin: boolean;
+      forum: ForumBackend[];
     }>(this.url, authData);
   }
 }

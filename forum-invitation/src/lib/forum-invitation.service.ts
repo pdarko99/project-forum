@@ -9,6 +9,6 @@ export class ForumInvitationService {
   http = inject(HttpClient);
 
   addForum = (forumIdToBeAdded: string) => {
-    return this.http.post(this.url, forumIdToBeAdded);
+    return this.http.post(this.url, {forumId:forumIdToBeAdded});
   };
 }

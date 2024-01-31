@@ -40,6 +40,27 @@ export class ForumService {
       ...forum,
       id: forum._id,
     })) as forum[];
+    if (formattedForum.length) {
+      this.selectedFirstForumToBeDisplayed.set(formattedForum[0].id);
+    }
     setForum(formattedForum);
   };
+
+  getUserForum() {
+   return this.http.get<{ forums: ForumBackend[] }>(this.url+"userForum").pipe(
+     map((x) => {
+        const formattedForum = x.forums.map((forum) => ({
+          ...forum,
+          id: forum._id,
+        })) as forum[];
+        return formattedForum;
+      }),
+      tap((x) => {
+        if (x.length) {
+          this.selectedFirstForumToBeDisplayed.set(x[0].id);
+        }
+        setForum(x);
+      })
+   )
+  }
 }
