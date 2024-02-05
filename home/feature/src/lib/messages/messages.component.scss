@@ -2,7 +2,12 @@ main {
   width: 100%;
   height: 100%;
   .messages-container {
-    height: 90vh;
+    // height: calc(100vh - var(--mat-toolbar-standard-height) + 48px);
+    height: calc(100vh - var(--mat-toolbar-standard-height) - 48px);
+    // height: calc(100vh - calc(64px + 48px));
+    // height: calc(100vh - (64px + 48px));
+
+    // height: ;
   }
 
   .messages-sidenav-content {
@@ -19,6 +24,7 @@ main {
 .header-info {
   display: flex;
   align-items: center;
+  height: 100%;
   img {
     height: 70px;
     border-radius: 50%;
@@ -33,7 +39,7 @@ main {
 
 .chat {
   width: 100%;
-  height: 80%;
+  height: 75%;
   .chat-container {
     width: 100%;
     padding-top: 1em;
@@ -83,7 +89,7 @@ main {
   align-items: center;
 }
 
-.list-container{
+.list-container {
   height: inherit;
   padding: 1em 0;
 }
@@ -104,5 +110,39 @@ main {
 
 .badge-content {
   z-index: 1;
+}
+
+// .message-input-section {
+//   // position: absolute;
+//   // bottom: 0;
+//   height: 20%;
+//   width: 100%;
+//   .message-input {
+//     // position: absolute;
+//     height: 100%;
+//     width: 100%;
+
+//     input {
+//       height: 100%;
+//       width: 100%;
+//     }
+//   }
+// }
+
+
+.message-input {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  // .input-container {
+  //   flex: 1; /* Take up remaining space */
+  //   height: 100%;
+  // }
+
+  // button {
+  //   margin-left: 8px; /* Adjust margin as needed */
+  // }
 }
 

@@ -285,7 +285,7 @@
     </mat-drawer>
 
     <div class="messages-sidenav-content">
-      <section style="padding: 0.7em 0 0.7em 0.7em">
+      <section style="padding: 0.7em 0 0.7em 0.7em; height: 10%">
         <div class="header-info">
           <div>
             <img src="assets/imgs/profile_pic.jpeg" alt="" />
@@ -463,6 +463,29 @@
           <!-- Add more messages as needed -->
         </div>
       </section>
+
+      <section style="height:3%; margin-top: 1em; background-color: white;">
+        <mat-form-field class="message-input">
+          <div>
+            <input
+              class="input-container"
+              matInput
+              placeholder="Type your message"
+            />
+          </div>
+          <!-- <div>
+            <button mat-icon-button aria-label="Send">
+              <mat-icon>send</mat-icon>
+            </button>
+          </div> -->
+        </mat-form-field>
+      </section>
+
+      <!-- <section class="message-input-section">
+          <div class="message-input">
+            <input type="text" />
+          </div>
+        </section> -->
     </div>
   </mat-drawer-container>
 </main>
