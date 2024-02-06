@@ -285,7 +285,9 @@
     </mat-drawer>
 
     <div class="messages-sidenav-content">
-      <section style="padding: 0.7em 0 0.7em 0.7em; height: 10%">
+      <section
+        style="padding: 0.7em 0 0.7em 0.7em; height: 10%; flex-shrink: 0"
+      >
         <div class="header-info">
           <div>
             <img src="assets/imgs/profile_pic.jpeg" alt="" />
@@ -295,8 +297,8 @@
             <small>online</small>
           </div>
         </div>
+        <mat-divider></mat-divider>
       </section>
-      <mat-divider></mat-divider>
 
       <section class="chat">
         <div class="chat-container">
@@ -464,28 +466,15 @@
         </div>
       </section>
 
-      <section style="height:3%; margin-top: 1em; background-color: white;">
-        <mat-form-field class="message-input">
-          <div>
-            <input
-              class="input-container"
-              matInput
-              placeholder="Type your message"
-            />
-          </div>
-          <!-- <div>
-            <button mat-icon-button aria-label="Send">
-              <mat-icon>send</mat-icon>
-            </button>
-          </div> -->
-        </mat-form-field>
+      <section class="msg-container">
+        <div class="message-input">
+          <mat-form-field class="form-field-container">
+            <!-- <mat-label>Enter Message</mat-label> -->
+            <input type="tel" matInput placeholder="Enter message" />
+            <mat-icon matSuffix>send</mat-icon>
+          </mat-form-field>
+        </div>
       </section>
-
-      <!-- <section class="message-input-section">
-          <div class="message-input">
-            <input type="text" />
-          </div>
-        </section> -->
     </div>
   </mat-drawer-container>
 </main>
