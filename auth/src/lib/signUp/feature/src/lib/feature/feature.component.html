@@ -67,7 +67,8 @@
         </mat-form-field>
         @if(signUpForm.get('passwordGroup')?.errors?.["match"] &&
         signUpForm.get('passwordGroup.confirmPassword')?.touched){
-        <mat-error> Passwords do not match </mat-error>
+        <mat-error><small>Passwords don't much</small></mat-error>
+
         }
       </div>
     </section>

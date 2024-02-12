@@ -35,6 +35,7 @@ import { selectToken$ } from '@project-forum/data-access';
 export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   const userToken = toSignal(selectToken$);
   const authToken = userToken();
+  console.log(authToken, 'from token')
   const authRequest = req.clone({
     headers: req.headers.set('Authorization', 'Bearer ' + authToken),
   });

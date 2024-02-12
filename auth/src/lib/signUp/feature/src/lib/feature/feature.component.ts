@@ -61,19 +61,22 @@ export class FeatureComponent {
 
     email: ['', [Validators.required, Validators.email]],
 
-    passwordGroup: this.fb.group({
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()=^#])([A-Za-z\d@$!%*?&()=^#]){8,}$/
-          ),
+    passwordGroup: this.fb.group(
+      {
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(
+              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()=^#])([A-Za-z\d@$!%*?&()=^#]){8,}$/
+            ),
+          ],
         ],
-      ],
 
-      confirmPassword: ['', [Validators.required, passwordMatcher]],
-    }),
+        confirmPassword: ['', [Validators.required]],
+      },
+      { validators: passwordMatcher }
+    ),
   });
 
   signUp() {
@@ -93,13 +96,13 @@ export class FeatureComponent {
       this.notificationService.open(res.message);
 
       this.authService.saveAuthData(res.token, res.firstName, res.admin);
-      if (!this.forums()) {
-        if (res.admin) {
-          this.forumService.getAllForums().subscribe();
-        } else {
-          this.forumService.setUserForums(res.forum);
-        }
-      }
+      // if (!this.forums()) {
+      //   if (res.admin) {
+      //     this.forumService.getAllForums().subscribe();
+      //   } else {
+      //     this.forumService.setUserForums(res.forum);
+      //   }
+      // }
 
       this.authService.setAuthTimer(res.expiresIn * 1000);
       this.closeDialog.emit();

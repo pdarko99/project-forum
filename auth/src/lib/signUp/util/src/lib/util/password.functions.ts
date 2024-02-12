@@ -12,5 +12,6 @@ export function passwordMatcher(
   if (passwordControl?.value === confirmPassword?.value) {
     return null;
   }
+  console.log("firing")
   return { match: true };
 }
