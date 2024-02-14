@@ -9,6 +9,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { map, shareReplay } from 'rxjs';
+// import { io } from 'socket.io-client';
+import { MessageService } from './messages.service';
 
 @Component({
   selector: 'project-forum-messages',
@@ -28,6 +30,9 @@ import { map, shareReplay } from 'rxjs';
 })
 export default class MessagesComponent {
   private breakpointObserver = inject(BreakpointObserver);
+  private messageService = inject(MessageService);
+  // private socket = io('http://localhost:3000');
+
   showFiller = false;
 
   isHandset = toSignal(

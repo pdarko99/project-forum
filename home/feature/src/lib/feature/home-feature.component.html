@@ -9,10 +9,16 @@
 }@else {
 <div class="noforum">
   <div>
-    <p class="mat-headline-5">No forum create a new forum below</p>
-    <button routerLink="/create-forum" mat-raised-button color="primary">
-      Create forum
-    </button>
+    @if(isAdmin()){
+      <p class="mat-headline-5">No forum create a new forum below</p>
+      <button routerLink="/create-forum" mat-raised-button color="primary">
+        Create forum
+      </button>
+    }@else{
+      <p class="mat-headline-5">You haven't been invited to any forum yet </p>
+      
+    }
+  
   </div>
 </div>
 }}}

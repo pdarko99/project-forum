@@ -31,6 +31,7 @@ export class AuthService {
 
   selectUserToken$ = selectToken$;
 
+
   IsAdmin$ = selectIsAdmin$;
 
   saveAuthData(token: string, firstName: string, admin: boolean) {
