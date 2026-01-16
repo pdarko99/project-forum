@@ -1,34 +1,44 @@
 import { Injectable } from '@angular/core';
-import { io, Socket } from 'socket.io-client';
+import { ActivatedRoute } from '@angular/router';
+import { io, Socket } from 'socket.io-client'; 
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessageService {
   // private socket = io('http://localhost:3000');
-  private socket: Socket;
+  private socket!: Socket;
+  forumId!: string;
 
-  constructor() {
-    // Connect to your Socket.IO server
+  constructor(private route: ActivatedRoute) {
     console.log('firing anaaaaa');
-    this.socket = io('http://localhost:3000', {
-    //   transports: ['websocket'],
+    this.route.params.subscribe(params => {
+      console.log(params,'fromparams')
+      console.log(this.route.params)
+      this.forumId = params['forum']; 
+      console.log(this.forumId, 'from rof');
+      this.socket = io('http://localhost:3000', {
+      query: {
+        forumId: this.forumId
+      }
+      });
+      this.socket.io.on('error', (error) => {
+        console.log(error, 'from error');
+      }); // Replace with your server URL
     });
+    
 
-    this.socket.io.on('error', (error) => {
-      console.log(error, 'from error');
-      // ...
-    }); // Replace with your server URL
+  
+
+    this.listenForMessages();
   }
-
-  // Example method to listen for 'message' event
   listenForMessages() {
-    this.socket.on('message', (data: string) => {
-      console.log('Received message:', data);
+    this.socket.on('allUsers', (data: string) => {
+      console.log('allUsers:', data);
+      
     });
   }
 
-  // Example method to emit a message to the server
   sendMessage(message: string) {
     this.socket.emit('message', message);
   }

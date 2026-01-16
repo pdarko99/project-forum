@@ -17,3 +17,5 @@ inteceptors now should be fuctions
 WHY IS THAT view children in the component file doesn't work but in the app.route file works
 
 effects
+
+http://localhost:4200/invitation/662426bc9d5337ff17be92ff/NIGHT

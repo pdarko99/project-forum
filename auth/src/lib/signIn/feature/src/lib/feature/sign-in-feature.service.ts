@@ -7,7 +7,13 @@ import { ForumBackend } from '@project-forum/home/model';
 })
 export class SignInFeatureService {
   url = 'http://localhost:3000/api/user/signin';
-  http = inject(HttpClient);
+  private _http = inject(HttpClient);
+  public get http() {
+    return this._http;
+  }
+  public set http(value) {
+    this._http = value;
+  }
 
   signIn(email: string, password: string) {
     const authData = {
